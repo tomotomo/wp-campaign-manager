@@ -12,19 +12,19 @@ License URI:
 
 function wcm_init() {
   $labels = array(
-    'name' => 'Books',
-    'singular_name' => 'Book',
-    'add_new' => 'Add New',
-    'add_new_item' => 'Add New Book',
-    'edit_item' => 'Edit Book',
-    'new_item' => 'New Book',
-    'all_items' => 'All Books',
-    'view_item' => 'View Book',
-    'search_items' => 'Search Books',
-    'not_found' =>  'No books found',
-    'not_found_in_trash' => 'No books found in Trash', 
+    'name' => __('Campaign'),
+    'singular_name' => __('Campaign'),
+    'add_new' => __('Add New'),
+    'add_new_item' => __('Add New Campaign'),
+    'edit_item' => __('Edit Campaign'),
+    'new_item' => __('New Campaign'),
+    'all_items' => __('All Campaign'),
+    'view_item' => __('View '),
+    'search_items' => __('Search Campigns'),
+    'not_found' =>  'No Campigns found',
+    'not_found_in_trash' => __('No Campigns found in Trash'), 
     'parent_item_colon' => '',
-    'menu_name' => 'Books'
+    'menu_name' => __('Campigns')
   );
 
   $args = array(
@@ -34,14 +34,14 @@ function wcm_init() {
     'show_ui' => true, 
     'show_in_menu' => true, 
     'query_var' => true,
-    'rewrite' => array( 'slug' => 'book' ),
-    'capability_type' => 'post',
+    'rewrite' => array( 'slug' => __('book') ),
+    'capability_type' => __('post'),
     'has_archive' => true, 
     'hierarchical' => false,
     'menu_position' => null,
     'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
   ); 
 
-  register_post_type( 'book', $args );
+  register_post_type( 'wcm-campaign', $args );
 }
 add_action( 'init', 'wcm_init' );
