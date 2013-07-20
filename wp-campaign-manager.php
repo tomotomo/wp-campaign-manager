@@ -30,13 +30,16 @@ function wcm_init() {
 
   $args = array(
     'labels' => $labels,
+	'description' => __('Manage campaigns.'),
     'public' => false,
     'publicly_queryable' => true,
     'show_ui' => true,
     'show_in_menu' => true, 
     'query_var' => true,
-    'rewrite' => array( 'slug' => __('book') ),
-    'capability_type' => __('post'),
+	// TODO Create an original menu icon
+	//'menu_icon' => ???,
+    'rewrite' => array( 'slug' => 'campaign' ),
+    'capability_type' => 'post',
     'has_archive' => true, 
     'hierarchical' => false,
     'menu_position' => null,
