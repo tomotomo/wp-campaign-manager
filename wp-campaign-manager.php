@@ -48,7 +48,7 @@ add_action( 'init', 'wcm_init' );
 
 
 // ショートコードの登録をしよう
-add_shortcode('CTA', 'wcm_shortcode');
+add_shortcode('wcm-show', 'wcm_shortcode');
 function wcm_shortcode ($atts)
 {
 	// ショートコードのオプションで取得する投稿を決める仕様
