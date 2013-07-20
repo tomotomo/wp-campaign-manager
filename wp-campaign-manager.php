@@ -31,7 +31,7 @@ function wcm_init() {
     'labels' => $labels,
     'public' => false,
     'publicly_queryable' => true,
-    'show_ui' => true, 
+    'show_ui' => true,
     'show_in_menu' => true, 
     'query_var' => true,
     'rewrite' => array( 'slug' => __('book') ),
@@ -39,9 +39,21 @@ function wcm_init() {
     'has_archive' => true, 
     'hierarchical' => false,
     'menu_position' => null,
-    'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+    'supports' => array( 'title', 'editor', 'custom-fields', 'author', 'thumbnail', 'excerpt' )
   ); 
 
   register_post_type( 'wcm-campaign', $args );
 }
 add_action( 'init', 'wcm_init' );
+
+
+// ショートコードの登録をしよう
+add_shortcode('CTA', 'wcm_shortcode');
+function wcm_shortcode ($atts)
+{
+	// まずは決め打ちでキャンペーンを取得
+	$content = get_post(10);
+	
+	$code = $content->post_content;
+	return $code;
+}
