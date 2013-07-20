@@ -51,8 +51,9 @@ add_action( 'init', 'wcm_init' );
 add_shortcode('CTA', 'wcm_shortcode');
 function wcm_shortcode ($atts)
 {
-	// まずは決め打ちでキャンペーンを取得
-	$content = get_post(10);
+	// ショートコードのオプションで取得する投稿を決める仕様
+	$post_id = $atts['id'];
+	$content = get_post($post_id);
 	
 	$code = $content->post_content;
 	return $code;
