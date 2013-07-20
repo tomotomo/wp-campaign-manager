@@ -29,8 +29,6 @@ Easy to use it!
 
 You will find 'Campaign' menu in your WordPress admin panel.
 
-For basic usage, you can also have a look at the [plugin homepage](http://contactform7.com/).
-
 
 == Frequently Asked Questions ==
 
