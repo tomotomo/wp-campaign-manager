@@ -56,6 +56,7 @@ add_shortcode('wcm-show', 'wcm_shortcode');
 function wcm_shortcode ($atts)
 {
 
+	// FIXME ? YOU can call all post type by this short code :P
 	$post_id = $atts['id'];
 	$content = get_post($post_id);
 	$code = '';
