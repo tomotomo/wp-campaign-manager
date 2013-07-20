@@ -10,6 +10,7 @@ License: GPLv2 or later
 License URI: 
 */
 
+// Initialize Custom post type.
 function wcm_init() {
   $labels = array(
     'name' => __('Campaign'),
@@ -47,14 +48,23 @@ function wcm_init() {
 add_action( 'init', 'wcm_init' );
 
 
-// ショートコードの登録をしよう
+// Add shortcode [wcm-show id=post_id]
 add_shortcode('wcm-show', 'wcm_shortcode');
 function wcm_shortcode ($atts)
 {
-	// ショートコードのオプションで取得する投稿を決める仕様
+
 	$post_id = $atts['id'];
 	$content = get_post($post_id);
+	$code = '';
 	
-	$code = $content->post_content;
+	// Not found the post
+	if (empty($content)) {
+		return $code;
+	}
+	
+	// Check post_status is publish
+	if ($content->post_status === 'publish') {
+		$code = $content->post_content;		
+	}
 	return $code;
 }
