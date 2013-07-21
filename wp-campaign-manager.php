@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Campaign Manager
 Plugin URI: 
-Description: 
+Description: Provides Shortcodes to display and manage your Campaign banners.
 Version: 0.1
 Author: Tomoyuki Sugita
 Author URI: http://tomotomosnippet.blogspot.jp/
@@ -10,27 +10,37 @@ License: GPLv2 or later
 License URI: 
 */
 
+// Define textdomain
+define('WCM_TEXTDOMAIN', 'wcm');
+//TODO Make wcm.po
+
 // Initialize Custom post type.
+add_action( 'init', 'wcm_init' );
 function wcm_init() {
+	
+	// Set text-domain
+	load_plugin_textdomain(WCM_TEXTDOMAIN, false, dirname(plugin_basename(__FILE__)).'/languages');
+	
+	
   $labels = array(
-    'name' => __('Campaign'),
-    'singular_name' => __('Campaign'),
-    'add_new' => __('Add New'),
-    'add_new_item' => __('Add New Campaign'),
-    'edit_item' => __('Edit Campaign'),
-    'new_item' => __('New Campaign'),
-    'all_items' => __('All Campaign'),
-    'view_item' => __('View '),
-    'search_items' => __('Search Campigns'),
-    'not_found' =>  'No Campigns found',
-    'not_found_in_trash' => __('No Campigns found in Trash'), 
+    'name' => __('Campaign', WCM_TEXTDOMAIN),
+    'singular_name' => __('Campaign', WCM_TEXTDOMAIN),
+    'add_new' => __('Add New', WCM_TEXTDOMAIN),
+    'add_new_item' => __('Add New Campaign', WCM_TEXTDOMAIN),
+    'edit_item' => __('Edit Campaign', WCM_TEXTDOMAIN),
+    'new_item' => __('New Campaign', WCM_TEXTDOMAIN),
+    'all_items' => __('All Campaign', WCM_TEXTDOMAIN),
+    'view_item' => __('View Campaign'),
+    'search_items' => __('Search Campaigns', WCM_TEXTDOMAIN),
+    'not_found' =>  __('No Campaigns found', WCM_TEXTDOMAIN),
+    'not_found_in_trash' => __('No Campaigns found in Trash', WCM_TEXTDOMAIN), 
     'parent_item_colon' => '',
-    'menu_name' => __('Campigns')
+    'menu_name' => __('Campaigns', WCM_TEXTDOMAIN)
   );
 
   $args = array(
     'labels' => $labels,
-	'description' => __('Manage campaigns.'),
+	'description' => __('Manage campaigns.', WCM_TEXTDOMAIN),
     'public' => false,
     'publicly_queryable' => true,
     'show_ui' => true,
@@ -48,7 +58,6 @@ function wcm_init() {
 
   register_post_type( 'wcm-campaign', $args );
 }
-add_action( 'init', 'wcm_init' );
 
 
 // Add shortcode [wcm-show id=post_id]
