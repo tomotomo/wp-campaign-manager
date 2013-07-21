@@ -81,3 +81,48 @@ function wcm_shortcode ($atts)
 	}
 	return $code;
 }
+
+// Add Button on post
+add_action( 'media_buttons', 'wcm_buttons', 99 );
+function wcm_buttons () {
+	
+	$active_list = wcm_get_campaigns();
+	
+	
+	echo '<select name="hoge">';
+	foreach ($active_list as $post) {
+		echo '<option value="'. esc_attr(wcm_build_shortcode($post->ID)) .'">'.esc_html($post->post_title.'['.$post->post_status.']').'</option>';
+	}
+	echo '</select>';
+	echo '<button onclick="javascript:alert(\'TODO:カーソル位置にキャンペーンのショートコードを追加\');return false;">追加</button>';
+}
+function wcm_get_campaigns ($arg=array()) {
+	
+	/**
+	 * Understand post_status
+	 * 
+	 * 'publish' - a published post or page
+	 * 'pending' - post is pending review
+	 * 'draft' - a post in draft status
+	 * 'auto-draft' - a newly created post, with no content
+	 * 'future' - a post to publish in the future
+	 * 'private' - not visible to users who are not logged in
+	 * 'inherit' - a revision. see get_children.
+	 * 'trash' - post is in trashbin. added with Version 2.9.  
+	 */
+	
+	$arg = array(
+		'post_type' => 'wcm-campaign',
+		'post_status' => array('publish', 'pending', 'draft'),
+	);
+	$list = get_posts($arg);
+	
+	return $list;
+}
+
+function wcm_build_shortcode ($id)
+{
+	$shortcode = '[wcm-show id=%d]';
+	$shortcode = sprintf($shortcode, (int)$id);
+	return $shortcode;
+}
