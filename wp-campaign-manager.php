@@ -12,6 +12,7 @@ License: GPLv2 or later
 new WPCampaignManager();
 
 class WPCampaignManager {
+
 	/**
 	 * plugin text domain 
 	 */
@@ -23,6 +24,7 @@ class WPCampaignManager {
 		// Initialize Custom post type.
 		add_action('init', array($this, 'init'));
 		// Add Button on post
+		add_action('media_buttons', array($this, 'wcm_show_buttons'));
 //		add_action('media_buttons', array($this, 'mce_buttons'), 99);
 
 		// Add shortcode [wcm-show id=post_id]
@@ -76,7 +78,6 @@ class WPCampaignManager {
 
 		register_post_type($this->post_type, $args);
 	}
-	
 
 	/**
 	 * Used while construct 
@@ -99,7 +100,6 @@ class WPCampaignManager {
 		}
 		return $code;
 	}
-	
 
 	/**
 	 * TODO Enable to insert campaign easily
@@ -116,7 +116,7 @@ class WPCampaignManager {
 		echo '</select>';
 		echo '<button onclick="javascript:alert(\'TODO:カーソル位置にキャンペーンのショートコードを追加\');return false;">追加</button>';
 	}
-	
+
 	/**
 	 * Get campigns selectable
 	 * @param Array $arg options 'post_type', 'post_status'
@@ -177,6 +177,25 @@ class WPCampaignManager {
 		if ($column=='code') {
 			_e(sprintf('<code title="Select and Copy">[wcm-show id=%d]</code>', $post_id), $this->textdomain);
 		}
+	}
+
+	/**
+	 * 投稿画面にボタンを追加する
+	 * Special thanks, Tanno and @yuka2p
+	 * @global type $post
+	 * @param type $editor_id 
+	 */
+	function wcm_show_buttons($editor_id = 'content') {
+		$posts = get_posts('post_type=wcm-campaign');
+		global $post;
+		foreach ($posts as $post):
+			setup_postdata($post);
+			?>
+<button onclick="prompt('コピーして使ってください',jQuery(this).data('postContent'));return false;" data-post-content="<?php echo "[wcm-show id=" . esc_attr($post->ID) . "]" ?>"> <?php the_title() ?></button>
+		<?php
+
+		endforeach;
+		wp_reset_postdata();
 	}
 
 }
