@@ -1,6 +1,6 @@
 === WP Campaign Manager ===
-Contributors: luchino__
-Tags: shortcode, post, marketing
+Contributors: tomotomobile
+Tags: shortcode, post, marketing, campaign
 Requires at least: 3.5.2
 Tested up to: 3.5.2
 Stable tag: 3.5.2
@@ -13,11 +13,13 @@ Provides Shortcodes to display and manage your Campaign banners. Useful!
 
 WP Campaign Manager, it is possible to simply add a shortcode to display the campaign banners while posts. Possible to manage the campaign on the dashboard. Super useful.
 
+Header image created by [@luchino__](https://twitter.com/luchino__)
+
 = Usage =
 
 Easy to use it!
 
-1. 'Add new' ans save.
+1. 'Add new' and save.
 2. Remember 'post id'. You can find it on url `/wp-admin/post.php?post=10&action=edit`
 3. Edit your post, input `[wcm-show id=post_id]`, save.
 
