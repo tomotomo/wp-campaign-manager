@@ -181,21 +181,18 @@ class WPCampaignManager {
 
 	/**
 	 * 投稿画面にボタンを追加する
-	 * Special thanks, Tanno and @yuka2p
+	 * Special thanks, Tanno and @yuka2py
 	 * @global type $post
 	 * @param type $editor_id 
 	 */
 	function wcm_show_buttons($editor_id = 'content') {
-		$posts = get_posts('post_type=wcm-campaign');
-		global $post;
+		$posts = $this->get_campaigns();
 		foreach ($posts as $post):
-			setup_postdata($post);
 			?>
-<button onclick="prompt('コピーして使ってください',jQuery(this).data('postContent'));return false;" data-post-content="<?php echo "[wcm-show id=" . esc_attr($post->ID) . "]" ?>"> <?php the_title() ?></button>
+<button onclick="prompt('コピーして使ってください',jQuery(this).data('postContent'));return false;" data-post-content="[wcm-show id=<?php echo esc_attr($post->ID) ?>]"> <?php $post->post_title ?></button>
 		<?php
 
 		endforeach;
-		wp_reset_postdata();
 	}
 
 }
