@@ -189,7 +189,7 @@ class WPCampaignManager {
 		$posts = $this->get_campaigns();
 		foreach ($posts as $post):
 			?>
-<button onclick="prompt('コピーして使ってください',jQuery(this).data('postContent'));return false;" data-post-content="[wcm-show id=<?php echo esc_attr($post->ID) ?>]"> <?php $post->post_title ?></button>
+<button onclick="prompt('コピーして使ってください',jQuery(this).data('postContent'));return false;" data-post-content="[wcm-show id=<?php echo esc_attr($post->ID) ?>]"> <?= $post->post_title ?></button>
 		<?php
 
 		endforeach;
