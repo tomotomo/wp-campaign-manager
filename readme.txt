@@ -3,7 +3,7 @@ Contributors: tomotomobile
 Tags: shortcode, post, marketing, campaign
 Requires at least: 3.5.2
 Tested up to: 3.7.1
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,7 @@ screenshot-1.png
 = 0.1 =
 beta version.
 
+* 0.1.2 bugfix for PHP5.2
 * 0.1.1 Implove UI.
 * 0.1 First release.
 
