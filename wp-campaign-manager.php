@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Campaign Manager
-Plugin URI: 
+Plugin URI: http://wordpress.org/plugins/wp-campaign-manager/
 Description: Provides Shortcodes to display and manage your Campaign banners.
 Version: 0.1
 Author: Tomoyuki Sugita
@@ -15,21 +15,21 @@ new WPCampaignManager();
 class WPCampaignManager {
 	/**
 	 * plugin text domain 
-	 * TODO Make wcm.po
 	 */
-
-	protected $textdomain = 'wcm';
-	protected $post_type = 'wcm-campaign';
+	public $textdomain = 'wcm';
+	public $post_type = 'wcm-campaign';
 
 	public function __construct() {
 
 		// Initialize Custom post type.
 		add_action('init', array($this, 'init'));
 		// Add Button on post
-		add_action('media_buttons', array($this, 'mce_buttons'), 99);
+//		add_action('media_buttons', array($this, 'mce_buttons'), 99);
 
 		// Add shortcode [wcm-show id=post_id]
 		add_shortcode('wcm-show', array($this, 'make_shortcode'));
+		
+		$this->show_tags_on_posts();
 	}
 
 	/**
@@ -84,7 +84,7 @@ class WPCampaignManager {
 	 */
 	public function make_shortcode($atts) {
 
-		// FIXME ? YOU can call all post type by this short code :P
+		// FIXME ? YOU CAN call all post type by this short code :P
 		$post_id = $atts['id'];
 		$content = get_post($post_id);
 		$code = '';
@@ -103,7 +103,7 @@ class WPCampaignManager {
 	
 
 	/**
-	 * Used while construct 
+	 * TODO Enable to insert campaign easily
 	 */
 	public function mce_buttons() {
 
@@ -118,10 +118,14 @@ class WPCampaignManager {
 		echo '<button onclick="javascript:alert(\'TODO:カーソル位置にキャンペーンのショートコードを追加\');return false;">追加</button>';
 	}
 	
-
+	/**
+	 * Get campigns selectable
+	 * @param Array $arg options 'post_type', 'post_status'
+	 * @return array List of posts.
+	 */
 	private function get_campaigns($arg = array()) {
 
-		/**
+		/*
 		 * Understand post_status
 		 * 
 		 * 'publish' - a published post or page
@@ -146,6 +150,30 @@ class WPCampaignManager {
 		$shortcode = '[wcm-show id=%d]';
 		$shortcode = sprintf($shortcode, (int) $post_id);
 		return $shortcode;
+	}
+	
+	/**
+	 * To display Shortcodes on campaigns list page
+	 */
+	public function show_tags_on_posts ()
+	{
+		$textdomain = $this->textdomain;
+		
+		// Table head
+		add_filter(
+			sprintf('manage_%s_posts_columns', $this->post_type), 
+			function ($columns) use ($textdomain) {
+				return array_merge($columns, array('code' => __('Short code', $textdomain)));
+			});
+		
+		// Column value
+		add_filter(
+			sprintf('manage_%s_posts_custom_column', $this->post_type), 
+			function ($column, $post_id) use ($textdomain) {
+				if ($column=='code') {
+					_e(sprintf('<code title="Select and Copy">[wcm-show id=%d]</code>', $post_id), $textdomain);
+				}
+			}, 10, 2);
 	}
 
 }
