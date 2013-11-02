@@ -156,23 +156,27 @@ class WPCampaignManager {
 	 */
 	public function show_tags_on_posts ()
 	{
-		$textdomain = $this->textdomain;
-		
 		// Table head
 		add_filter(
 			sprintf('manage_%s_posts_columns', $this->post_type), 
-			function ($columns) use ($textdomain) {
-				return array_merge($columns, array('code' => __('Short code', $textdomain)));
-			});
+			array($this, 'show_tags_on_posts_columns') );
 		
 		// Column value
 		add_filter(
 			sprintf('manage_%s_posts_custom_column', $this->post_type), 
-			function ($column, $post_id) use ($textdomain) {
-				if ($column=='code') {
-					_e(sprintf('<code title="Select and Copy">[wcm-show id=%d]</code>', $post_id), $textdomain);
-				}
-			}, 10, 2);
+			array($this, 'show_tags_on_posts_custom_column'), 10, 2);
+	}
+	
+	public function show_tags_on_posts_columns ($columns)
+	{
+		return array_merge($columns, array('code' => __('Short code', $this->textdomain)));
+	}
+	
+	public function show_tags_on_posts_custom_column ($column, $post_id)
+	{
+		if ($column=='code') {
+			_e(sprintf('<code title="Select and Copy">[wcm-show id=%d]</code>', $post_id), $this->textdomain);
+		}
 	}
 
 }
