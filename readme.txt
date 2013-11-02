@@ -2,8 +2,8 @@
 Contributors: tomotomobile
 Tags: shortcode, post, marketing, campaign
 Requires at least: 3.5.2
-Tested up to: 3.5.2
-Stable tag: 3.5.2
+Tested up to: 3.7.1
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,30 +20,28 @@ Header image created by [@luchino__](https://twitter.com/luchino__)
 Easy to use it!
 
 1. 'Add new' and save.
-2. Remember 'post id'. You can find it on url `/wp-admin/post.php?post=10&action=edit`
-3. Edit your post, input `[wcm-show id=post_id]`, save.
+2. Copy a shortcode. e.g. [wcm-show id=1111]
+3. Edit your post, paste it, save.
 
 == Installation ==
 
 1. Upload the entire `wp-campaign-manager` folder to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 
-You will find 'Campaign' menu in your WordPress admin panel.
+You will find 'Campaigns' menu in your WordPress admin panel.
 
 
 == Frequently Asked Questions ==
-
-You have no question because of simple plugin.
+= There are similar plugins. =
+You may mean [TinyMCE Templates](http://wordpress.org/plugins/tinymce-templates/) or . If you want to manage marketing campaigns, have to use WP Campaign manager. This plugin is for marketers.
 
 == Screenshots ==
-
-No Screenshot.
+screenshot-1.png
 
 == Changelog ==
 
 = 0.1 =
-First release.
-
-== Arbitrary section ==
-
+beta version.
+* 0.1.1 Implove UI.
+* 0.1 First release.
 
