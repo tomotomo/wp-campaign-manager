@@ -36,7 +36,7 @@ You will find 'Campaigns' menu in your WordPress admin panel.
 You may mean [TinyMCE Templates](http://wordpress.org/plugins/tinymce-templates/) or . If you want to manage marketing campaigns, have to use WP Campaign manager. This plugin is for marketers.
 
 == Screenshots ==
-screenshot-1.png
+1. Copy a shortcode
 
 == Changelog ==
 
