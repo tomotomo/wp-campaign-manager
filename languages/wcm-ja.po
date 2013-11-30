@@ -1,0 +1,79 @@
+# Copyright (C) 2013 WP Campaign Manager
+# This file is distributed under the same license as the WP Campaign Manager package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Campaign Manager 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-campaign-manager\n"
+"POT-Creation-Date: 2013-08-07 15:42:24+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-11-30 14:00+0900\n"
+"Last-Translator: Tomoyuki Sugita <valueshare@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.5.5\n"
+
+#: wp-campaign-manager.php:26 wp-campaign-manager.php:27
+msgid "Campaign"
+msgstr "キャンペーン"
+
+#: wp-campaign-manager.php:28
+msgid "Add New"
+msgstr "新規追加"
+
+#: wp-campaign-manager.php:29
+msgid "Add New Campaign"
+msgstr "新規キャンペーン作成"
+
+#: wp-campaign-manager.php:30
+msgid "Edit Campaign"
+msgstr "キャンペーン編集"
+
+#: wp-campaign-manager.php:31
+msgid "New Campaign"
+msgstr "新規キャンペーン"
+
+#: wp-campaign-manager.php:32
+msgid "All Campaign"
+msgstr "キャンペーン一覧"
+
+#: wp-campaign-manager.php:33
+msgid "View Campaign"
+msgstr "キャンペーンを表示"
+
+#: wp-campaign-manager.php:34
+msgid "Search Campaigns"
+msgstr "キャンペーンを検索"
+
+#: wp-campaign-manager.php:35
+msgid "No Campaigns found"
+msgstr "キャンペーンが見つかりませんでした"
+
+#: wp-campaign-manager.php:36
+msgid "No Campaigns found in Trash"
+msgstr "ゴミ箱内にキャンペーンが見つかりませんでした。"
+
+#: wp-campaign-manager.php:38
+msgid "Campaigns"
+msgstr "キャンペーン"
+
+#: wp-campaign-manager.php:43
+msgid "Manage campaigns."
+msgstr "キャンペーンを管理する。"
+
+#. Plugin Name of the plugin/theme
+msgid "WP Campaign Manager"
+msgstr "WP キャンペーン・マネージャー"
+
+#. Description of the plugin/theme
+msgid "Provides Shortcodes to display and manage your Campaign banners."
+msgstr ""
+"キャンペーンバナーの表示と管理をするショートコードを使えるようになります。"
+
+#. Author of the plugin/theme
+msgid "Tomoyuki Sugita"
+msgstr "Tomoyuki Sugita"
+
+#. Author URI of the plugin/theme
+msgid "http://tomotomosnippet.blogspot.jp/"
+msgstr "http://tomotomosnippet.blogspot.jp/"
