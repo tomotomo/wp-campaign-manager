@@ -3,7 +3,7 @@
 Plugin Name: WP Campaign Manager
 Plugin URI: http://wordpress.org/plugins/wp-campaign-manager/
 Description: Provides Shortcodes to display and manage your Campaign banners.
-Version: 0.1.2
+Version: 0.2
 Author: Tomoyuki Sugita
 Author URI: http://tomotomosnippet.blogspot.jp/
 License: GPLv2 or later
