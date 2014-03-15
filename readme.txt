@@ -2,8 +2,8 @@
 Contributors: tomotomobile
 Tags: shortcode, post, marketing, campaign
 Requires at least: 3.5.2
-Tested up to: 3.7.1
-Stable tag: 0.1.2
+Tested up to: 3.8.1
+Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,9 +40,11 @@ You may mean [TinyMCE Templates](http://wordpress.org/plugins/tinymce-templates/
 
 == Changelog ==
 
-= 0.1 =
+= 0.2 =
 beta version.
+* Localized, Japanese.
 
+= 0.1 =
 * 0.1.2 bugfix for PHP5.2
 * 0.1.1 Implove UI.
 * 0.1 First release.
