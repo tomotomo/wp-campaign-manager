@@ -2,8 +2,8 @@
 Contributors: tomotomobile
 Tags: shortcode, post, marketing, campaign
 Requires at least: 3.5.2
-Tested up to: 3.8.1
-Stable tag: 0.2
+Tested up to: 3.9.1
+Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,6 +12,8 @@ Provides Shortcodes to display and manage your Campaign banners. Useful!
 == Description ==
 
 WP Campaign Manager, it is possible to simply add a shortcode to display the campaign banners while posts. Possible to manage the campaign on the dashboard. Super useful.
+
+[日本語の説明](http://tomotomosnippet.blogspot.jp/2013/12/wp-campaign-manager-wpacja2013.html)
 
 Header image created by [@luchino__](https://twitter.com/luchino__)
 

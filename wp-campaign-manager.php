@@ -2,14 +2,15 @@
 /*
 Plugin Name: WP Campaign Manager
 Plugin URI: http://wordpress.org/plugins/wp-campaign-manager/
-Description: Provides Shortcodes to display and manage your Campaign banners.
-Version: 0.2
+Description: Manage your campaign banners easier.
+Version: 0.2.1
 Author: Tomoyuki Sugita
 Author URI: http://tomotomosnippet.blogspot.jp/
 License: GPLv2 or later
 */
 
-new WPCampaignManager();
+$instans = new WPCampaignManager();
+$instans->execute();
 
 class WPCampaignManager {
 	/**
@@ -20,16 +21,21 @@ class WPCampaignManager {
 
 	public function __construct() {
 
-		// Initialize Custom post type.
-		add_action('init', array($this, 'init'));
 		// Add Button on post
 //		add_action('media_buttons', array($this, 'mce_buttons'), 99);
 
+	}
+        
+        public function execute()
+        {
+		// Initialize Custom post type.
+		add_action('init', array($this, 'init'));
+                
 		// Add shortcode [wcm-show id=post_id]
 		add_shortcode('wcm-show', array($this, 'make_shortcode'));
-		
+                
 		$this->show_tags_on_posts();
-	}
+        }
 
 	/**
 	 * Used while construct 
