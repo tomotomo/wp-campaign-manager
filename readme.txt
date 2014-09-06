@@ -44,7 +44,9 @@ You may mean [TinyMCE Templates](http://wordpress.org/plugins/tinymce-templates/
 
 = 0.2 =
 beta version.
-* Localized, Japanese.
+* 0.2.2 filter hook `wcm-custom-post-arg`.
+* 0.2.1 Code fix.
+* 0.2 Localized, Japanese.
 
 = 0.1 =
 * 0.1.2 bugfix for PHP5.2
