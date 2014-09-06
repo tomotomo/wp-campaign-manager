@@ -3,21 +3,28 @@
 Plugin Name: WP Campaign Manager
 Plugin URI: http://wordpress.org/plugins/wp-campaign-manager/
 Description: Manage your campaign banners easier.
-Version: 0.2.1
+Version: 0.2.2
 Author: Tomoyuki Sugita
 Author URI: http://tomotomosnippet.blogspot.jp/
 License: GPLv2 or later
 */
 
-$instans = new WPCampaignManager();
-$instans->execute();
+$instance = new WPCampaignManager();
+$instance->execute();
 
+/**
+ * Class WPCampaignManager
+ */
 class WPCampaignManager {
 	/**
-	 * plugin text domain 
+	 * plugin text domain
+     * @string
 	 */
 	public $textdomain = 'wcm';
-	public $post_type = 'wcm-campaign';
+    /**
+     * @var string
+     */
+    public $post_type = 'wcm-campaign';
 
 	public function __construct() {
 
@@ -25,9 +32,9 @@ class WPCampaignManager {
 //		add_action('media_buttons', array($this, 'mce_buttons'), 99);
 
 	}
-        
-        public function execute()
-        {
+
+    public function execute()
+    {
 		// Initialize Custom post type.
 		add_action('init', array($this, 'init'));
                 
@@ -35,10 +42,10 @@ class WPCampaignManager {
 		add_shortcode('wcm-show', array($this, 'make_shortcode'));
                 
 		$this->show_tags_on_posts();
-        }
+    }
 
 	/**
-	 * Used while construct 
+	 * Used while execute
 	 */
 	public function init() {
 
@@ -46,7 +53,7 @@ class WPCampaignManager {
 		load_plugin_textdomain($this->textdomain, false, dirname(plugin_basename(__FILE__)) . '/languages');
 
 
-		$labels = array(
+        $labels = array(
 			'name' => __('Campaign', $this->textdomain),
 			'singular_name' => __('Campaign', $this->textdomain),
 			'add_new' => __('Add New', $this->textdomain),
@@ -122,13 +129,13 @@ class WPCampaignManager {
 		echo '</select>';
 		echo '<button onclick="javascript:alert(\'TODO:カーソル位置にキャンペーンのショートコードを追加\');return false;">追加</button>';
 	}
-	
-	/**
-	 * Get campigns selectable
-	 * @param Array $arg options 'post_type', 'post_status'
-	 * @return array List of posts.
-	 */
-	private function get_campaigns($arg = array()) {
+
+    /**
+     * Get campaigns selectable
+     * @param array $arg options 'post_type', 'post_status'
+     * @return array List of posts.
+     */
+    private function get_campaigns($arg = array()) {
 
 		/*
 		 * Understand post_status
@@ -146,14 +153,18 @@ class WPCampaignManager {
 			'post_type' => $this->post_type,
 			'post_status' => array('publish', 'pending', 'draft'),
 		);
-		$list = get_posts($arg);
+		$list = get_posts(apply_filters('wcm-custom-post-arg', $arg));
 
 		return $list;
 	}
 
-	private function build_shortcode($post_id) {
-		$shortcode = '[wcm-show id=%d]';
-		$shortcode = sprintf($shortcode, (int) $post_id);
+    /**
+     * @param $post_id
+     * @return string
+     */
+    private function build_shortcode ($post_id)
+    {
+		$shortcode = sprintf('[wcm-show id=%d]', (int) $post_id);
 		return $shortcode;
 	}
 	
