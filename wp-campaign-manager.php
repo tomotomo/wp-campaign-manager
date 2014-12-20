@@ -3,7 +3,7 @@
 Plugin Name: WP Campaign Manager
 Plugin URI: http://wordpress.org/plugins/wp-campaign-manager/
 Description: Manage your campaign banners easier.
-Version: 0.2.2
+Version: 0.2.3
 Author: Tomoyuki Sugita
 Author URI: http://tomotomosnippet.blogspot.jp/
 License: GPLv2 or later
