@@ -2,8 +2,8 @@
 Contributors: tomotomobile
 Tags: shortcode, post, marketing, campaign
 Requires at least: 3.6
-Tested up to: 4.1
-Stable tag: 0.2.3
+Tested up to: 4.2.3
+Stable tag: 0.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,9 @@ You will find 'Campaigns' menu in your WordPress admin panel.
 
 
 == Frequently Asked Questions ==
+= How to set expire each campaigns. =
+I recommend to use [PostExpirator](https://wordpress.org/plugins/post-expirator/) together.
+
 = There are similar plugins. =
 You may mean [TinyMCE Templates](http://wordpress.org/plugins/tinymce-templates/) or . If you want to manage marketing campaigns, have to use WP Campaign manager. This plugin is for marketers.
 
@@ -45,6 +48,7 @@ You may mean [TinyMCE Templates](http://wordpress.org/plugins/tinymce-templates/
 = 0.2 =
 beta version.
 
+* 0.2.4 followed WordPress coding standard.
 * 0.2.3 fix text-domain.
 * 0.2.2 filter hook `wcm-custom-post-arg`.
 * 0.2.1 Code fix.
@@ -53,6 +57,6 @@ beta version.
 = 0.1 =
 
 * 0.1.2 bugfix for PHP5.2
-* 0.1.1 Implove UI.
+* 0.1.1 Improve UI.
 * 0.1 First release.
 
