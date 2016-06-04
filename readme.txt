@@ -1,9 +1,9 @@
 === WP Campaign Manager ===
 Contributors: tomotomobile
 Tags: shortcode, post, marketing, campaign
-Requires at least: 3.6
-Tested up to: 4.2.3
-Stable tag: 0.2.4
+Requires at least: 4.0
+Tested up to: 4.5.3
+Stable tag: 0.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,7 @@ You may mean [TinyMCE Templates](http://wordpress.org/plugins/tinymce-templates/
 = 0.2 =
 beta version.
 
+* 0.2.5 change admin menu icon
 * 0.2.4 followed WordPress coding standard.
 * 0.2.3 fix text-domain.
 * 0.2.2 filter hook `wcm-custom-post-arg`.

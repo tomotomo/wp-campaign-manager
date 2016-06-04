@@ -69,13 +69,12 @@ class WPCampaignManager {
 			'show_ui'            => true,
 			'show_in_menu'       => true,
 			'query_var'          => true,
-			// TODO Create an original menu icon
-			//'menu_icon' => ???,
+			'menu_position'      => 20,
+			'menu_icon'          => 'dashicons-admin-page',
 			'rewrite'            => array( 'slug' => 'campaign' ),
 			'capability_type'    => 'post',
 			'has_archive'        => true,
 			'hierarchical'       => false,
-			'menu_position'      => null,
 			'supports'           => array( 'title', 'editor', 'custom-fields', 'author', 'thumbnail', 'excerpt' )
 		);
 
@@ -88,7 +87,7 @@ class WPCampaignManager {
 	 */
 	public function make_shortcode( $atts ) {
 
-		// FIXME ? YOU CAN call all post type by this short code :P
+		// YOU CAN call all post type by this short code :P
 		$post_id = $atts['id'];
 		$content = get_post( $post_id );
 		$code    = '';
