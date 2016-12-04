@@ -9,6 +9,11 @@ Author URI: http://tomotomosnippet.blogspot.jp/
 License: GPLv2 or later
 */
 
+require_once __DIR__ . '/autoloader.php';
+
+use tomotomobile\WPCampaignManager\AdminTheme;
+use tomotomobile\WPCampaignManager\ShortCode;
+
 $instance = new WPCampaignManager();
 $instance->execute();
 
@@ -31,10 +36,13 @@ class WPCampaignManager {
 		// Initialize Custom post type.
 		add_action( 'init', array( $this, 'init' ) );
 
+		$shortCode = new ShortCode();
 		// Add shortcode [wcm-show id=post_id]
-		add_shortcode( 'wcm-show', array( $this, 'make_shortcode' ) );
+		add_shortcode( 'wcm-show', array( $shortCode, 'behavior' ) );
 
-		$this->show_tags_on_posts();
+		$adminThem = new AdminTheme(self::TEXT_DOMAIN, self::POST_TYPE);
+		$adminThem->init();
+
 	}
 
 	/**
@@ -83,35 +91,6 @@ class WPCampaignManager {
 		register_post_type( self::POST_TYPE, $args );
 	}
 
-
-	/**
-	 * Used while construct
-	 *
-	 * @param array $atts
-	 *
-	 * @return string
-	 */
-	public function make_shortcode( $atts ) {
-
-		// YOU CAN call all post type by this short code :P
-		$post_id = $atts['id'];
-		$content = get_post( $post_id );
-		$code    = '';
-
-		// Not found the post
-		if ( empty( $content ) ) {
-			return $code;
-		}
-
-		// Check post_status is publish
-		if ( $content->post_status === 'publish' ) {
-			$code = do_shortcode( $content->post_content );
-		}
-
-		return $code;
-	}
-
-
 	/**
 	 * Get campaigns selectable
 	 *
@@ -153,29 +132,4 @@ class WPCampaignManager {
 		return $shortcode;
 	}
 
-	/**
-	 * To display Shortcodes on campaigns list page
-	 * @todo 詳細ページへのリンクを表示する
-	 */
-	public function show_tags_on_posts() {
-		// Table head
-		add_filter(
-			sprintf( 'manage_%s_posts_columns', self::POST_TYPE ),
-			array( $this, 'show_tags_on_posts_columns' ) );
-
-		// Column value
-		add_filter(
-			sprintf( 'manage_%s_posts_custom_column', self::POST_TYPE ),
-			array( $this, 'show_tags_on_posts_custom_column' ), 10, 2 );
-	}
-
-	public function show_tags_on_posts_columns( $columns ) {
-		return array_merge( $columns, array( 'code' => __( 'Short code', self::TEXT_DOMAIN ) ) );
-	}
-
-	public function show_tags_on_posts_custom_column( $column, $post_id ) {
-		if ( $column == 'code' ) {
-			_e( sprintf( '<code title="Select and Copy">[wcm-show id=%d]</code>', $post_id ), self::TEXT_DOMAIN );
-		}
-	}
 }
