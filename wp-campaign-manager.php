@@ -20,11 +20,12 @@ class WPCampaignManager {
 	 * plugin text domain
 	 * @string
 	 */
-	public $textdomain = 'wcm';
+	const TEXT_DOMAIN = 'wcm';
+
 	/**
 	 * @var string
 	 */
-	public $post_type = 'wcm-campaign';
+	const POST_TYPE = 'wcm-campaign';
 
 	public function execute() {
 		// Initialize Custom post type.
@@ -38,32 +39,33 @@ class WPCampaignManager {
 
 	/**
 	 * Used while execute
+	 * @todo カスタムフィールドを追加する
 	 */
 	public function init() {
 
 		// Set text-domain
-		load_plugin_textdomain( $this->textdomain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( self::TEXT_DOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 
 		$labels = array(
-			'name'               => __( 'Campaign', $this->textdomain ),
-			'singular_name'      => __( 'Campaign', $this->textdomain ),
-			'add_new'            => __( 'Add New', $this->textdomain ),
-			'add_new_item'       => __( 'Add New Campaign', $this->textdomain ),
-			'edit_item'          => __( 'Edit Campaign', $this->textdomain ),
-			'new_item'           => __( 'New Campaign', $this->textdomain ),
-			'all_items'          => __( 'All Campaign', $this->textdomain ),
-			'view_item'          => __( 'View Campaign', $this->textdomain ),
-			'search_items'       => __( 'Search Campaigns', $this->textdomain ),
-			'not_found'          => __( 'No Campaigns found', $this->textdomain ),
-			'not_found_in_trash' => __( 'No Campaigns found in Trash', $this->textdomain ),
+			'name'               => __( 'Campaign', self::TEXT_DOMAIN ),
+			'singular_name'      => __( 'Campaign', self::TEXT_DOMAIN ),
+			'add_new'            => __( 'Add New', self::TEXT_DOMAIN ),
+			'add_new_item'       => __( 'Add New Campaign', self::TEXT_DOMAIN ),
+			'edit_item'          => __( 'Edit Campaign', self::TEXT_DOMAIN ),
+			'new_item'           => __( 'New Campaign', self::TEXT_DOMAIN ),
+			'all_items'          => __( 'All Campaign', self::TEXT_DOMAIN ),
+			'view_item'          => __( 'View Campaign', self::TEXT_DOMAIN ),
+			'search_items'       => __( 'Search Campaigns', self::TEXT_DOMAIN ),
+			'not_found'          => __( 'No Campaigns found', self::TEXT_DOMAIN ),
+			'not_found_in_trash' => __( 'No Campaigns found in Trash', self::TEXT_DOMAIN ),
 			'parent_item_colon'  => '',
-			'menu_name'          => __( 'Campaigns', $this->textdomain )
+			'menu_name'          => __( 'Campaigns', self::TEXT_DOMAIN )
 		);
 
 		$args = array(
 			'labels'             => $labels,
-			'description'        => __( 'Manage campaigns.', $this->textdomain ),
+			'description'        => __( 'Manage campaigns.', self::TEXT_DOMAIN ),
 			'public'             => false,
 			'publicly_queryable' => true,
 			'show_ui'            => true,
@@ -78,12 +80,16 @@ class WPCampaignManager {
 			'supports'           => array( 'title', 'editor', 'custom-fields', 'author', 'thumbnail', 'excerpt' )
 		);
 
-		register_post_type( $this->post_type, $args );
+		register_post_type( self::POST_TYPE, $args );
 	}
 
 
 	/**
 	 * Used while construct
+	 *
+	 * @param array $atts
+	 *
+	 * @return string
 	 */
 	public function make_shortcode( $atts ) {
 
@@ -107,22 +113,6 @@ class WPCampaignManager {
 
 
 	/**
-	 * TODO Enable to insert campaign easily
-	 */
-	public function mce_buttons() {
-
-		$active_list = $this->get_campaigns();
-
-
-		echo '<select name="hoge">';
-		foreach ( $active_list as $post ) {
-			echo '<option value="' . esc_attr( $this->build_shortcode( $post->ID ) ) . '">' . esc_html( $post->post_title . '[' . $post->post_status . ']' ) . '</option>';
-		}
-		echo '</select>';
-		echo '<button onclick="javascript:alert(\'TODO:カーソル位置にキャンペーンのショートコードを追加\');return false;">追加</button>';
-	}
-
-	/**
 	 * Get campaigns selectable
 	 *
 	 * @param array $arg options 'post_type', 'post_status'
@@ -144,7 +134,7 @@ class WPCampaignManager {
 		 * 'trash' - post is in trashbin. added with Version 2.9.
 		 */
 		$arg  = array(
-			'post_type'   => $this->post_type,
+			'post_type'   => self::POST_TYPE,
 			'post_status' => array( 'publish', 'pending', 'draft' ),
 		);
 		$list = get_posts( apply_filters( 'wcm-custom-post-arg', $arg ) );
@@ -165,27 +155,27 @@ class WPCampaignManager {
 
 	/**
 	 * To display Shortcodes on campaigns list page
+	 * @todo 詳細ページへのリンクを表示する
 	 */
 	public function show_tags_on_posts() {
 		// Table head
 		add_filter(
-			sprintf( 'manage_%s_posts_columns', $this->post_type ),
+			sprintf( 'manage_%s_posts_columns', self::POST_TYPE ),
 			array( $this, 'show_tags_on_posts_columns' ) );
 
 		// Column value
 		add_filter(
-			sprintf( 'manage_%s_posts_custom_column', $this->post_type ),
+			sprintf( 'manage_%s_posts_custom_column', self::POST_TYPE ),
 			array( $this, 'show_tags_on_posts_custom_column' ), 10, 2 );
 	}
 
 	public function show_tags_on_posts_columns( $columns ) {
-		return array_merge( $columns, array( 'code' => __( 'Short code', $this->textdomain ) ) );
+		return array_merge( $columns, array( 'code' => __( 'Short code', self::TEXT_DOMAIN ) ) );
 	}
 
 	public function show_tags_on_posts_custom_column( $column, $post_id ) {
 		if ( $column == 'code' ) {
-			_e( sprintf( '<code title="Select and Copy">[wcm-show id=%d]</code>', $post_id ), $this->textdomain );
+			_e( sprintf( '<code title="Select and Copy">[wcm-show id=%d]</code>', $post_id ), self::TEXT_DOMAIN );
 		}
 	}
-
 }
