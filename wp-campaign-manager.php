@@ -21,18 +21,17 @@ $instance->execute();
  * Class WPCampaignManager
  */
 class WPCampaignManager {
-	/**
-	 * plugin text domain
-	 * @string
-	 */
-	const TEXT_DOMAIN = 'wcm';
 
-	/**
-	 * @var string
-	 */
+	const TEXT_DOMAIN = 'wcm';
 	const POST_TYPE = 'wcm-campaign';
+	const MINIMUM_VERSION = 5.3;
+	const INVALID_VERSION_MESSAGE = 'Required PHP 5.3 or later.';
 
 	public function execute() {
+		if ( version_compare( PHP_VERSION, self::MINIMUM_VERSION, '<' ) ) {
+			return;
+		}
+
 		// Initialize Custom post type.
 		add_action( 'init', array( $this, 'init' ) );
 
@@ -40,14 +39,13 @@ class WPCampaignManager {
 		// Add shortcode [wcm-show id=post_id]
 		add_shortcode( 'wcm-show', array( $shortCode, 'behavior' ) );
 
-		$adminThem = new AdminTheme(self::TEXT_DOMAIN, self::POST_TYPE);
+		$adminThem = new AdminTheme( self::TEXT_DOMAIN, self::POST_TYPE );
 		$adminThem->init();
 
 	}
 
 	/**
 	 * Used while execute
-	 * @todo カスタムフィールドを追加する
 	 */
 	public function init() {
 
@@ -62,7 +60,7 @@ class WPCampaignManager {
 			'add_new_item'       => __( 'Add New Campaign', self::TEXT_DOMAIN ),
 			'edit_item'          => __( 'Edit Campaign', self::TEXT_DOMAIN ),
 			'new_item'           => __( 'New Campaign', self::TEXT_DOMAIN ),
-			'all_items'          => __( 'All Campaign', self::TEXT_DOMAIN ),
+			'all_items'          => __( 'All Campaigns', self::TEXT_DOMAIN ),
 			'view_item'          => __( 'View Campaign', self::TEXT_DOMAIN ),
 			'search_items'       => __( 'Search Campaigns', self::TEXT_DOMAIN ),
 			'not_found'          => __( 'No Campaigns found', self::TEXT_DOMAIN ),

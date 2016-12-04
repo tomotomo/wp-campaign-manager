@@ -2,8 +2,8 @@
 Contributors: tomotomobile
 Tags: shortcode, post, marketing, campaign
 Requires at least: 4.0
-Tested up to: 4.5.3
-Stable tag: 0.2.5
+Tested up to: 4.6.1
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,19 +45,24 @@ You may mean [TinyMCE Templates](http://wordpress.org/plugins/tinymce-templates/
 
 == Changelog ==
 
-= 0.2 =
-beta version.
+= 0.3 =
+Require PHP 5.3 or later.
 
-* 0.2.5 change admin menu icon
-* 0.2.4 followed WordPress coding standard.
-* 0.2.3 fix text-domain.
-* 0.2.2 filter hook `wcm-custom-post-arg`.
+* 0.3 Add campaign detail url field.
+
+= 0.2 =
+Beta version.
+
+* 0.2.5 Change admin menu icon.
+* 0.2.4 Follow WordPress coding standard.
+* 0.2.3 Fix text-domain.
+* 0.2.2 Add filter hook `wcm-custom-post-arg`.
 * 0.2.1 Code fix.
 * 0.2 Localized, Japanese.
 
 = 0.1 =
 
-* 0.1.2 bugfix for PHP5.2
+* 0.1.2 Bugfix for PHP5.2
 * 0.1.1 Improve UI.
 * 0.1 First release.
 
