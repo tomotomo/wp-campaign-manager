@@ -9,9 +9,12 @@
     <tr>
         <th><label for="<?= $field_name ?>" class="url">URL</label></th>
         <td>
-            <input type="url" id="<?= $field_name ?>" name="<?= $field_name ?>" class="<?= $field_name ?>_field"
+            <input type="url" id="<?= $field_name ?>" name="<?= $field_name ?>" class="<?= $field_name ?>_field widefat"
                    placeholder="Campaign detail url." value="<?= esc_attr__( $url ) ?>">
-            <p><a href="#" target="_blank" id="url_checker">Check URL</a></p>
+            <p>
+                <a href="<?= esc_attr__( $url ) ?>" target="_blank" id="url_checker">Check URL</a>
+                <span class="notice">Sorry: This link isn't changed real time.</span>
+            </p>
         </td>
     </tr>
 

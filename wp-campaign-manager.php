@@ -25,10 +25,17 @@ class WPCampaignManager {
 	const TEXT_DOMAIN = 'wcm';
 	const POST_TYPE = 'wcm-campaign';
 	const MINIMUM_VERSION = 5.3;
-	const INVALID_VERSION_MESSAGE = 'Required PHP 5.3 or later.';
+	const INVALID_VERSION_MESSAGE = 'WP Campaign Manager Error: Required PHP 5.3 or later. Your PHP version is %s';
 
 	public function execute() {
 		if ( version_compare( PHP_VERSION, self::MINIMUM_VERSION, '<' ) ) {
+			add_action( 'admin_notices', function () {
+				$html = '<div class="error notice is-dismissible">';
+				$html .= '<p>' . sprintf( self::INVALID_VERSION_MESSAGE, PHP_VERSION ) . '</p>';
+				$html .= '</div>';
+				echo $html;
+			} );
+
 			return;
 		}
 
@@ -120,14 +127,13 @@ class WPCampaignManager {
 	}
 
 	/**
-	 * @param $post_id
+	 * @param int $post_id
 	 *
-	 * @return string
+	 * @return string Short code
 	 */
-	private function build_shortcode( $post_id ) {
+	static function build_shortcode( $post_id ) {
 		$shortcode = sprintf( '[wcm-show id=%d]', (int) $post_id );
 
 		return $shortcode;
 	}
-
 }

@@ -5,6 +5,8 @@ class AdminTheme {
 	static $textDomain;
 	static $postType;
 
+	const NONCE_ACTION = 'wcm-nonce-save';
+	const NONCE_NAME = 'wcm-nonce';
 	const CUSTOM_FIELD_URL = 'wcm-url';
 
 	public function __construct( $textDomain, $postType ) {
@@ -64,15 +66,14 @@ class AdminTheme {
 				self::$postType
 			);
 		} );
-		add_action( 'save_post', array( $this, 'saveMetaBox' ), 10, 2 );
+		add_action( 'save_post_' . self::$postType, array( $this, 'saveMetaBox' ), 10, 2 );
 	}
 
 	public function saveMetaBox( $post_id, $post ) {
 
 		// Add nonce for security and authentication.
-		// FIXME なにこれ？
-		$nonce        = @$_POST['car_nonce'];
-		$nonce_action = 'car_nonce_action';
+		$nonce        = empty( $_POST[ self::NONCE_NAME ] ) ? '' : $_POST[ self::NONCE_NAME ];
+		$nonce_action = self::NONCE_ACTION;
 
 		// Check if a nonce is set.
 		if ( ! isset( $nonce ) ) {
@@ -80,10 +81,6 @@ class AdminTheme {
 		}
 		// Check if a nonce is valid.
 		if ( ! wp_verify_nonce( $nonce, $nonce_action ) ) {
-			return;
-		}
-		// Check if the user has permissions to save data.
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 		// Check if it's not an autosave.
@@ -104,7 +101,7 @@ class AdminTheme {
 
 	public function renderMetaBox( $post ) {
 		// Add nonce for security and authentication.
-		wp_nonce_field( 'car_nonce_action', 'car_nonce' );
+		wp_nonce_field( self::NONCE_ACTION, self::NONCE_NAME );
 
 		// Retrieve an existing value from the database.
 		$url = get_post_meta( $post->ID, self::CUSTOM_FIELD_URL, true );
